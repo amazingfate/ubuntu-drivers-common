@@ -1196,24 +1196,24 @@ static prime_intel_drv get_prime_intel_driver() {
  */
 static bool write_multiamd_pxpress_xorg_conf() {
     int status = -1;
-    char command[50] = "/usr/bin/amdconfig";
+    char command[50] = "/usr/bin/aticonfig";
 
-    fprintf(log_handle, "Calling amdconfig\n");
+    fprintf(log_handle, "Calling aticonfig\n");
 
-    /* call amdconfig */
+    /* call aticonfig */
     if (dry_run) {
         status = 0;
-        fprintf(log_handle, "amdconfig status %d\n", status);
+        fprintf(log_handle, "aticonfig status %d\n", status);
     }
     else {
         if (is_link(command) || is_file(command)) {
             /* Recreate the xorg.conf from scratch */
             strcat(command, " --initial");
             status = system(command);
-            fprintf(log_handle, "amdconfig status %d\n", status);
+            fprintf(log_handle, "aticonfig status %d\n", status);
         }
         else {
-            fprintf(log_handle, "amdconfig is not available\n");
+            fprintf(log_handle, "aticonfig is not available\n");
         }
     }
 
